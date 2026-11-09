@@ -1,266 +1,203 @@
-# Cheap VPS by Workload: Eight Hosts, and When a Managed Platform Makes More Sense
+# DigitalOcean, Vultr & Hetzner Alternatives for Small VPS Projects
 
-> **Updated: 2026-11-04 (affiliate status) · Public-price verification: 2026-11-02 · Currency: USD**  
-> This is a selection guide based on public product pages, not a hands-on performance ranking. No server was purchased or benchmarked for this guide. Listed prices do not establish stock, checkout eligibility, renewal cost or taxes.
+*Research edition: 2026-11-09. Product and image snapshot: 2026-11-02.*
 
-> **Link disclosure:** The **RackNerd** link marked below is our own affiliate link — it was supplied and confirmed as ours by the site owner, and signing up through it may earn us a commission or account credit under RackNerd's rules, at no extra cost to you. ⚠️ We did **not** log in to RackNerd's back office to activate or verify that link ourselves, so its commission rate, settlement and payout terms are whatever the provider's own dashboard and contract say — this guide claims none of them. **Every other provider link below is an ordinary official link, and we use nobody else's referral code.** Commercial relationships must not change the comparison, limitations or inclusion of alternatives.
+> This is a buying guide based on official public pages, not a hands-on performance ranking. We did not purchase or benchmark these services, test routing or inventory, test long-term stability, attempt disaster recovery, or open support tickets. We also did not verify renewal or refund terms through purchase. Price, stock, renewal, tax, routing, policy and checkout eligibility can change; verify the exact order before paying.
+>
+> **Affiliate disclosure:** We may earn a commission or account credit if you buy through our RackNerd, VPSDime, ProfitServer or CloudCone links.
 
-## The short verdict
+## Short verdict
 
-**Buy a cheap VPS when you want control and can accept responsibility for the operating system. Buy a managed service when the work you need to outsource matters more than the VM's sticker price.**
+For a small VPS project, start with the constraint that matters most:
 
-- **Hobby projects:** start by comparing RackNerd's annual specials, CloudCone's annual SSD VPS and VPSDime's monthly Linux plans. A low invoice is useful only if the selected region and resources fit your application.
-- **Production:** none of these eight earns a blanket recommendation from untested specifications. Choose an exact product, recovery plan and support arrangement—not a brand nickname.
-- **Databases:** more RAM is not proof of durable storage or predictable write latency. VPSDime and selected GreenCloud offers are candidates to investigate; a managed database may be the better answer for critical data.
-- **Automation:** an always-on SSH worker and an API-provisioned fleet are different purchases. Confirm lifecycle APIs and infrastructure-as-code support before committing to the latter.
-- **Regional networking:** investigate BandwagonHost, DMIT or HostDare's specific optimized products only if that routing serves your users. Do not pay a route premium merely because a guide calls it “better.”
+1. **RackNerd** for a rebuildable task that should stay online and where a low annual holding cost matters more than month-to-month flexibility.
+2. **VPSDime** for a RAM-forward Linux workload that benefits from monthly billing—after checking that the Linux product's virtualization and software compatibility fit the job.
+3. **ProfitServer** for a location-specific worker—only after checking the live plan, billing period, policy and total at checkout.
+4. **CloudCone** for a small US-based task that fits the annual **SSD VPS 1** offer shown at **$28/year** in the 2026-11-02 official snapshot. The displayed **$2.33 equivalent** is the annual price divided across 12 months, not monthly billing.
 
-The numbered cards below are a reading order, not a performance leaderboard.
+Need cloud APIs, adjacent services or repeatable provisioning? See the platform trade-offs below.
 
-<!-- IMG:VPS-EN-workload-decision | Optional original decision diagram; explanatory only, not a benchmark. No image asset supplied. -->
+## Billing and workload comparison
 
-## What a cheap VPS price leaves out
+This is a payment/resources/use comparison, **not a normalized performance table**. CPU labels, virtualization, storage, transfer, network paths and support boundaries differ, and none of the rows below is a benchmark result.
 
-### Shared resources are not automatically a bad deal
+| Provider | Payment evidence in this edition | Resource example from the 2026-11-02 official snapshot | Best considered for | Verify before buying |
+|---|---|---|---|---|
+| **RackNerd** | Annual: **$21.99/year** for the displayed 1 GB special | 1 vCPU, 1 GB RAM, 20 GB SSD, 3 TB monthly transfer | Rebuildable, continuously running light tasks where low annual holding cost is useful | Live stock and location, renewal, tax, route, contention, backup, refund and management responsibility |
+| **VPSDime** | Monthly: Linux **4 GB $5/month**; **6 GB $7/month** | 4 GB/2 CPU/20 GB SSD/1 TB; 6 GB/4 CPU/30 GB SSD/2 TB in the captured table | RAM-forward Linux labs and small self-hosted apps | Linux product compatibility, CPU sharing, storage behavior, transfer, backup, location, tax, renewal and support scope |
+| **ProfitServer** | **Billing period unknown from the captured evidence**; several “from” figures were displayed | Location-specific cards list CPU, RAM and SSD examples | A small worker that needs one of the offered regions | Exact plan and period, live total, region, stock, tax, renewal, network policy, refund and support scope |
+| **CloudCone** | Annual: **$28/year** for the displayed SSD VPS 1; **$2.33 annual-price equivalent**, not monthly billing | 2 vCPU, 1 GB dedicated RAM, 30 GB pure SSD, 4 TB monthly bandwidth, one IPv4 and three IPv6 | A small US-based service with a known annual lifespan | Current offer and total, location, availability, renewal, tax, route, recovery options, cancellation and support scope |
 
-A vCPU is a scheduling allocation, not necessarily an exclusively assigned physical core. KVM provides virtualization and isolation; it does not, by itself, prove dedicated CPU time. A generous RAM allocation can coexist with shared CPU, storage and network contention.
+The smallest displayed number does not settle the choice. RackNerd's and CloudCone's annual payments are not monthly cancellation flexibility; VPSDime's memory allocation is not a CPU or storage result; and ProfitServer's “from” figures are not monthly prices unless the live order flow explicitly says so.
 
-Overselling means selling allocations beyond immediately available capacity. It is distinct from ordinary resource sharing. This guide has not measured host contention at any provider, so it does not label a provider oversold—or certify a “no overselling” slogan.
+## 1. RackNerd: low annual holding cost for a rebuildable task
 
-For a bursty personal site, shared resources may be entirely reasonable. For a sustained build worker or write-heavy database, investigate CPU-use limits, storage latency and behavior under your actual workload. An NVMe label alone cannot answer those questions.
+RackNerd is the clearest first path when a small bot, dashboard, personal service or worker can be rebuilt and the selected location works for its users. The official specials page captured on 2026-11-02 showed KVM plans billed per year, including a 1 GB example at $21.99/year. That supports a **low annual holding-cost** case; it does not prove RackNerd is the cheapest first trial, fastest server, or best-routed network.
 
-### “Unmetered” and “10Gbps” answer different questions
+![RackNerd annual KVM plan cards showing yearly prices and listed resources](assets/racknerd-annual-kvm-plans.png)
 
-Unmetered usually concerns traffic volume. Port speed concerns a link's capacity. Neither establishes your sustained application throughput, fair-use allowance or freedom from congestion.
+*Image evidence — RackNerd official specials-page snapshot, 2026-11-02. The crop shows annual plan cards and listed resources. It is not live-inventory evidence and not an independent benchmark; confirm current stock, location, renewal, tax and checkout terms.*
 
-A server near your users may reduce distance, but geography does not establish a good network path. A China-optimized route is a product-specific attribute, not a global performance upgrade. Compare the traffic direction and audience you actually serve.
+### Where it fits
 
-### The invoice is only part of the operating cost
+- A light service that should remain online for a year.
+- A disposable environment whose data and configuration are backed up elsewhere.
+- A buyer comfortable administering Linux and paying the full annual term up front.
 
-Check these before normalizing prices:
+### Where it loses
 
-| Cost or constraint | What to establish before buying |
-|---|---|
-| Billing commitment | The amount due now, service term, renewal amount and cancellation rules. A monthly-equivalent annual price is not monthly billing. |
-| IPv4 and licenses | Included addresses, extra-address charges, Windows licensing and optional hosting panels. |
-| Transfer | Whether allowances count inbound, outbound or both; overage, throttling and suspension behavior. |
-| Backups | Price, retention, location, exportability and restore procedure. RAID and a snapshot on the same failure domain are not independent backups. |
-| Operations | OS updates, firewall rules, secrets, monitoring and application support: who owns each task? |
-| Recovery and SLA | What failures are covered, how credits are claimed and how quickly you can restore. A credit policy is not compensation for all business losses. |
+- A one-month experiment where easy cancellation matters more than annual holding cost.
+- A workload that needs documented dedicated CPU behavior, managed backups or an advanced cloud API.
+- A project whose latency or route requires a location that is unavailable for the selected special.
 
-A useful comparison is:
+### Before purchase
 
-```text
-Operating cost = VM invoice + backup storage + optional IPs/licenses/transfer
-               + monitoring and administration + incident recovery work
-```
+Check the exact location and stock, renewal amount, tax, refund rules, CPU policy, transfer and port details, backup/restore path, DDoS terms and support boundary. Treat every server as self-managed unless the live order states otherwise; keep reproducible deployment instructions and off-server backups.
 
-Compare these costs over the same service term. Stopping a VM also does not necessarily stop billing; check retained disks, reserved IPs and the provider's deletion rules.
+**Primary action:** [Compare current RackNerd specials](https://my.racknerd.com/aff.php?aff=21833)
 
-## Choose the service model for your workload
+## 2. VPSDime: monthly, RAM-forward Linux plans with a product boundary
 
-### Hobby: optimize for a reversible mistake
+VPSDime is the second path when memory is the binding constraint and monthly billing is preferable to paying for a year. Its Linux VPS table captured on 2026-11-02 displayed 4 GB at $5/month and 6 GB at $7/month. Those are useful resource-and-payment facts, but they do not establish application performance, dedicated CPU time, disk latency or long-term stability.
 
-A personal dashboard, development sandbox or small scheduled worker is a good place to learn server administration. The important question is whether you can rebuild it from code and recover anything valuable from elsewhere.
+![VPSDime Linux VPS monthly plan table with RAM, CPU, storage, transfer and uplink columns](assets/vpsdime-linux-plans.png)
 
-RackNerd's **$21.99/year** special and CloudCone's **$28/year** SSD VPS give a low annual invoice. VPSDime's **$5/month** Linux plan offers a different trade-off: a higher twelve-month cash total, but less initial commitment. These are different resource bundles, not interchangeable machines.
+*Image evidence — VPSDime official Linux VPS product-page snapshot, 2026-11-02. The crop shows displayed monthly plans and resources. It is not live-inventory evidence and not an independent benchmark; verify the current plan, location, renewal, tax and order total.*
 
-**Who should not use the cheapest annual plan:** someone who needs hands-on application management, expects a refund on every promotional SKU, or cannot lose access while rebuilding. If you only need to publish static files, static hosting may remove server maintenance altogether.
+### The compatibility check matters
 
-### Production: select recovery and support before extra cores
+The Linux line has its own product and compatibility questions. Do not assume that a large RAM number means the same virtualization boundary, kernel behavior or software support as VPSDime's Premium product—or as a KVM cloud instance elsewhere. Confirm the requirements of Docker, custom kernels, FUSE, TUN/TAP, NFS and any other kernel-dependent software before buying.
 
-A production VPS can be sensible when the team knows how to patch it, monitor it and restore it. “Unmanaged” does not mean inherently unreliable; it means responsibilities must be assigned explicitly.
+![VPSDime Linux VPS FAQ topics covering virtualization, resources, backup, Premium differences and Docker](assets/vpsdime-linux-product-faq.png)
 
-BandwagonHost's listed backup and snapshot features warrant inspection. DMIT offers distinct network and hardware series. Neither feature set replaces an application recovery plan. A second VM on the same host or in the same account is not automatically meaningful failover.
+*Image evidence — VPSDime official Linux VPS product-page FAQ snapshot, 2026-11-02. The crop documents the decision questions buyers should resolve; collapsed questions are not answers. It is not live-inventory evidence and not an independent benchmark.*
 
-A cloud VM is not a managed application platform merely because it has an API. Conversely, an app platform's deploy workflow does not necessarily include managed database recovery. Compare the exact service: deployment, OS maintenance, database backups, observability, support and failure handling.
+### Where it fits
 
-**Who should not use this bare-VM shortlist as a final answer:** a team that needs someone else to own application incidents, or a service whose availability requirements cannot be met by its proposed recovery design. A managed host or platform may be worth the larger invoice.
+- A memory-bound development lab or non-critical self-hosted app.
+- A buyer who values monthly commitment over the lowest annualized invoice.
+- Software whose operating-system and virtualization requirements have been checked against the exact Linux product.
 
-### Database: buy a recovery design, not a RAM bargain
+### Where it loses
 
-Memory-rich VPSDime plans and individual GreenCloud KVM offers are worth investigating for development databases or non-critical self-hosting. They are not verified database winners.
+- A workload needing dedicated CPU guarantees or independently measured storage latency.
+- Software that requires a feature the Linux product does not support.
+- A buyer who needs a broad cloud-service ecosystem, standardized fleet automation or a different region.
 
-For important data, define the acceptable data-loss window and restore time. Check storage limits, backup consistency, off-host copies, point-in-time recovery where needed, and an actual restore rehearsal. A disk benchmark cannot prove durability; a provider backup label cannot prove an application-consistent restore.
+### Before purchase
 
-**Who should not self-manage this database:** someone who cannot maintain, protect and restore it, or who expects a single cheap VM to deliver high availability. Compare managed database products on the responsibilities they remove, not only on RAM per dollar.
+Verify virtualization and kernel compatibility, CPU sharing, storage behavior, transfer and port policy, location, backup add-on and retention, refund and cancellation rules, tax, renewal, route and support scope. A backup feature on a product page is not evidence that restores were tested.
 
-### Automation: separate job execution from provisioning
+**Primary action:** [Compare current VPSDime Linux plans](https://vpsdime.com/a/4857/linux-vps)
 
-For a persistent scheduler, bot or worker, SSH access and a suitable OS may be enough. RackNerd, CloudCone, VPSDime and ProfitServer offer product lines to investigate for this pattern. Resource and acceptable-use policies still apply.
+## 3. ProfitServer: a location-specific candidate, not a price-period claim
 
-For disposable CI machines or multi-region infrastructure, verify more:
+ProfitServer is the third path when one of its listed regions is the real requirement. The official homepage captured on 2026-11-02 showed locations across Europe, Asia and the United States alongside resource cards and “from” prices. The screenshot did **not** establish the billing period, so this guide does not call those figures monthly prices or monthly flexibility.
 
-- Documented create/delete/rebuild APIs for the exact product line;
-- Supported Terraform integration—or a maintainable alternative—not just a control-panel button;
-- Image IDs, regional inventory, quotas, credential scope and rate limits;
-- Billing granularity and what remains chargeable after a job ends;
-- An idempotent recovery path when provisioning fails halfway through.
+![ProfitServer locations and VPS plan cards with displayed resources and from-prices](assets/profitserver-location-plans.png)
 
-This pass did **not** verify an end-to-end provisioning API or Terraform workflow for any of the eight providers. That means **unverified**, not “no API.” If lifecycle automation is mandatory, resolve it before buying an annual special; a developer-oriented cloud platform may be a better fit.
+*Image evidence — ProfitServer official homepage snapshot, 2026-11-02. The crop shows listed regions and example plan cards, but it does not establish a billing period. It is not live-inventory evidence and not an independent benchmark; verify availability, period, currency, tax and checkout total.*
 
-## Dated price and product snapshot
+### Where it fits
 
-**All rows were checked against public-page text on 2026-11-02.** Resources and policies are provider statements. Prices are listed examples, not independently confirmed purchasable inventory. Unknowns are not filled with historical promotion prices.
+- A small regional worker where a particular available location matters.
+- A buyer willing to validate the exact plan and period in the current order flow.
+- A self-managed, replaceable service whose route and policy can be checked before migration.
 
-| Provider and exact example | Listed resources | Displayed base price | Important unresolved condition |
-|---|---|---:|---|
-| RackNerd · 1 GB KVM special | 1 vCPU, 1 GB RAM, 20 GB SSD, 3 TB monthly transfer, one IPv4 | **$21.99/year** | Location stock, renewal and refund terms for the chosen order |
-| BandwagonHost · 40G KVM PROMO | 3 listed CPU allocations, 2 GB RAM, 40 GB SSD, 2 TB/month | **$99.99/year** | Listing does not establish stock or optimized routing |
-| CloudCone · SSD VPS 1 | 2 vCPUs, 1 GB RAM, 30 GB SSD, 4 TB/month, one IPv4 | **$28/year**, advertised $2.33/month equivalent | Annual VPS features must not be inferred from SC2 marketing |
-| DMIT · LAX.AS3.T1 WEE | 1 vCore, 1 GB RAM, 20 GB SSD, 1,000 GB “Max (IN, OUT)” | **$36.90/year** | Explicit AS3 disk-performance/lower-SLA warning; not a mature-platform equivalent |
-| HostDare · SSD0 | 1 core, 512 MB RAM, 10 GB SSD, 500 GB transfer, one IPv4 | **$25.99/year** | Actual hardware/storage and restrictive refund conditions |
-| GreenCloudVPS · BudgetKVMNYC-2 | 2 EPYC Rome cores, 4,096 MB RAM, 35 GB NVMe, 4 TB bandwidth | **Not verified** | Extract exposed specifications and stock, but no usable price; sale marked non-refundable |
-| VPSDime · Linux 4 GB | 2 listed CPUs, 4 GB RAM, 20 GB SSD, 1 TB transfer | **$5/month** | Linux virtualization differs from Premium KVM; nightly backups are an add-on |
-| ProfitServer · Optima / S examples | Optima: 0.5 GB RAM, 15 GB SSD; S: 1 GB RAM, 10 GB SSD | **$2.90 / $3.90 displayed** | Billing-cycle label and exact region pairing not recovered; do not treat these as verified monthly invoices |
+### Where it loses
 
-For transparent arithmetic, $21.99 divided by 12 is approximately **$1.83/month**, and $25.99 divided by 12 is approximately **$2.17/month**. Both remain annual purchases. Do not mix them with monthly cancellation flexibility or a differently specified VM.
+- A buyer who needs a price and term that can be confirmed before entering checkout.
+- A project expecting identical capacity, routing or terms across all listed regions.
+- A team that needs a mature infrastructure-as-code ecosystem or a managed service boundary.
 
-## Eight provider cards
+### Before purchase
 
-### 1. RackNerd — a low annual invoice for rebuildable projects
-![RackNerd public specials page (snapshot 2026-11-02)](assets/racknerd.com-pricing.png)
+Select the exact country and datacenter first, then confirm plan resources, billing period, total, currency, tax, renewal, inventory, route/looking-glass result, channel and traffic terms, prohibited-use policy, refund/cancellation terms, backup options and support scope. Do not infer that a “from” figure applies to every region or period.
 
+**Primary action:** [Check current ProfitServer locations and plans](https://profitserver.net/?partner_id=3430198)
 
-**Fit:** Linux learning, a lightweight persistent worker, development services and personal projects you can restore independently.
+## 4. CloudCone: a $28 annual SSD VPS offer, not an SC2 claim
 
-The [specials page](https://www.racknerd.com/specials) listed the 1 GB KVM plan at **$21.99/year** on 2026-11-02. Its ctrl panel is described as offering reinstall, console, firewall and one-click applications. Those can reduce setup work; they do not establish managed application support or lifecycle API compatibility.
+CloudCone is the fourth primary path for a small US-based service with a known annual lifespan. The official VPS page captured on 2026-11-02 displayed **SSD VPS 1 at $28 billed per year**. It also displayed a **$2.33 annual-price equivalent**—the annual price divided across 12 months. This guide does **not** describe the offer as monthly billing.
 
-**Who should NOT use it:** a buyer choosing solely by annual price while requiring predictable sustained CPU, a verified regional route or someone to maintain the application.
+The same card displayed 2 vCPU, 1 GB dedicated RAM, 30 GB pure SSD, 4 TB monthly bandwidth, one IPv4 and three IPv6, KVM virtualization, and US datacenters. These are page specifications, not results from our own server, network or checkout tests.
 
-**Before committing:** check the selected region, resource-use policy, backup provisions, renewal price and cancellation/refund terms. No independent uptime, throughput or CPU result is available in this guide.
+![CloudCone SSD VPS 1 annual plan card showing the billed-per-year amount and listed resources](assets/cloudcone-ssd-vps-1-annual-plan.png)
 
-<!-- AFF_SLOT:RACKNERD | Filled 2026-11-04: affiliate URL supplied and confirmed as ours by the site owner. Not activated or verified by us; commission rate and payout terms not verified. -->
-**Plans · our affiliate link:** [Compare RackNerd specials through our affiliate link](https://my.racknerd.com/aff.php?aff=21833).
+*Image evidence — CloudCone official VPS-page snapshot, 2026-11-02. The pixel-preserving crop shows the SSD VPS 1 card, including its billed-per-year amount and listed resources. It is not live-stock evidence and not an independent benchmark; verify the current offer and order total.*
 
-### 2. BandwagonHost — inspect the operational features and the route separately
-![BandwagonHost public product-plan cards (snapshot 2026-11-02)](assets/bandwagonhost.com-product-sku.png)
+### Keep SSD VPS and SC2 separate
 
+The captured VPS page points to **SC2 as a separate product line**. Nothing in this guide assigns SC2 pricing, billing, controls, backups, snapshots, APIs or other features to SSD VPS 1. If an SC2 feature is the reason to buy, evaluate that SC2 product on its own current page and terms rather than extrapolating from either line.
 
-**Fit:** self-managing users who value the listed KiwiVM recovery/migration features, or who have identified a specific network product worth its premium.
+### Where it fits
 
-The [public catalog](https://bandwagonhost.com/cart.php?gid=1) listed **40G KVM PROMO at $99.99/year** on 2026-11-02, with automatic backups, snapshots, migration and a stated 99.95% uptime guarantee. These are provider claims; backup retention, covered failures and product-specific migration choices still need verification.
+- A small US-based service with a known annual lifespan and requirements that fit the displayed SSD VPS 1 resources.
+- A rebuildable worker, lab or personal service where paying the full annual charge is acceptable.
+- A buyer who can verify the current offer and maintain off-server copies before committing.
 
-**Who should NOT use it:** someone assuming every BandwagonHost SKU has the same premium route, or treating a listed promotional plan as guaranteed available inventory.
+### Where it loses
 
-**Before committing:** identify the region and network series on the actual order. The catalog explicitly calls the service **strictly self-managed**. Backups and an uptime guarantee do not change that responsibility split.
+- A one-month experiment that requires true monthly billing or easy month-to-month cancellation.
+- A workload that depends on an SC2-specific feature not established for SSD VPS 1.
+- A project that needs measured routing, latency, storage behavior, uptime or support performance before purchase.
 
-<!-- AFF_SLOT:BANDWAGONHOST | No submission recorded in supplied status ledger; no affiliate URL supplied. -->
-**Official catalog · affiliate slot unfilled:** [Inspect BandwagonHost products](https://bandwagonhost.com/cart.php?gid=1).
+### Before purchase
 
-### 3. CloudCone — an annual VPS is not its entire cloud platform
-![CloudCone public VPS pricing page (snapshot 2026-11-02)](assets/cloudcone.com-pricing.png)
+Verify that SSD VPS 1 is currently offered, the full amount and period shown at checkout, location, allocation, tax, renewal, recovery options, cancellation and refund terms, route and support scope. The 2026-11-02 screenshot does not prove current inventory or any checkout-only term.
 
+**Primary action:** [Check the current CloudCone offer](https://app.cloudcone.com/?ref=14824)
 
-**Fit:** a small US-based service with a known annual lifespan and a workload that fits the chosen SSD VPS.
+## Additional option: GreenCloudVPS for exact KVM offer shopping
 
-The [SSD VPS page](https://cloudcone.com/vps) showed **$28/year** for SSD VPS 1 on 2026-11-02. It separately points readers to SC2 for more features. Parts of the page also discuss SC2, so it would be unsafe to assign every cloud feature to the annual VPS.
+GreenCloudVPS can be considered when you are willing to compare a specific live Budget KVM SKU by CPU, RAM, storage, bandwidth, location and sale terms. It is not one of this guide's four primary paths because inventory-driven offers can vary, and the captured material did not provide enough stable evidence for a normalized price comparison.
 
-**Who should NOT use it:** someone buying the annual plan while expecting unverified SC2 billing, backups or API behavior; someone requiring a network path not established for the chosen SKU.
+Its weakness is repeatability: a useful configuration in one location may be unavailable later or differ from another sale item. Before buying, verify the live invoice, renewal, stock, location, CPU/storage model, route, tax, refund eligibility, traffic policy, backup retention and management responsibility.
 
-**Before committing:** get product-specific answers about recovery, snapshots, traffic and cancellation. Root access and a dashboard are useful, but are not proof of a managed service.
+**Ordinary official link:** [Inspect the current GreenCloudVPS Budget KVM catalog](https://greencloudvps.com/billing/store/budget-kvm-sale)
 
-<!-- AFF_SLOT:CLOUDCONE | Existing owner account; authorized code retrieval outstanding. No affiliate URL supplied. -->
-**Official plans · affiliate slot unfilled:** [Compare CloudCone SSD VPS](https://cloudcone.com/vps).
+## Platform trade-offs: DigitalOcean vs Vultr vs Hetzner
 
-### 4. DMIT — the hardware and network series matter more than the lowest price
-![DMIT public pricing page (snapshot 2026-11-02)](assets/dmit.io-pricing.png)
+These three platforms are comparison points, not the primary purchase paths in this guide. Use ordinary official links to examine the platform advantage you would actually consume:
 
+- **[DigitalOcean Droplets](https://www.digitalocean.com/pricing/droplets):** worth considering when documentation, a familiar developer experience and adjacent platform services reduce operating work. The trade-off is paying for an ecosystem a single light VM may not need, plus checking the full stack cost rather than a headline starting price.
+- **[Vultr Cloud Compute](https://www.vultr.com/products/cloud-compute/):** worth considering when deployment-location breadth and cloud-style provisioning are requirements. Check the exact region, RAM, storage, IP and retained-resource charges instead of treating the smallest advertised tier as equivalent to every budget VPS.
+- **[Hetzner Cloud](https://www.hetzner.com/cloud):** worth considering when its regions, account model and tooling fit the project. Check tax, account acceptance, routing and separately billed items such as primary IPv4; a strong value reputation does not make it universal.
 
-**Fit:** applications whose audience justifies a particular regional network, or buyers deliberately comparing DMIT's different hardware and transfer bundles.
+Choose one of these platforms when you can name the documentation, API, service, location or operational benefit that justifies it. Otherwise, a smaller provider whose billing and resource shape matches the workload may be the more focused experiment.
 
-The [pricing page](https://www.dmit.io/pages/pricing) showed **LAX.AS3.T1 WEE at $36.90/year** on 2026-11-02. It also listed **LAX.AN5.T1 VOLUME V2C2G at $14.90/month**, with 2 GB RAM and 40 GB SSD. These are different products, not two billing choices for the same machine.
+## Pre-purchase checks that can reverse the verdict
 
-**Who should NOT use it:** someone calling the cheapest AS3 plan a production bargain while ignoring the provider's warning about reduced disk performance and a lower SLA. HKG Eyeball was also explicitly described as beta and not recommended for high-stability production use.
+1. **Billing:** exact amount, currency, billing period, renewal, setup fees, tax and refund/cancellation rules.
+2. **Resources:** virtualization, shared or dedicated CPU behavior, RAM, storage type/size, transfer and port policy.
+3. **Location:** datacenter—not merely company country—plus route or looking-glass evidence for your users.
+4. **Availability:** live stock and whether the displayed configuration is actually selectable.
+5. **Recovery:** backup control, retention, restore process, snapshots, rescue console and exportability.
+6. **Network:** DDoS boundary, IPv4/IPv6, traffic restrictions and any location-specific channel limits.
+7. **Operations:** root access, image choices, reinstall, lifecycle, deletion timing and support responsibility.
+8. **Policy:** acceptable use and software/workload restrictions for the exact product.
+9. **Exit:** reproducible provisioning and off-server copies so a failed experiment stays reversible.
 
-**Before committing:** bind every claim to location, hardware and network series. Tier 1 is not Premium. The page itself says listed products/prices may lag adjustments; no current stock or routing result was independently verified here.
+## Final buying order
 
-<!-- AFF_SLOT:DMIT | No submission recorded in supplied status ledger; no affiliate URL supplied. -->
-**Official pricing · affiliate slot unfilled:** [Inspect DMIT series and warnings](https://www.dmit.io/pages/pricing).
+- **RackNerd:** start here for a rebuildable task where the low annual holding cost and an available location fit. [Compare current specials](https://my.racknerd.com/aff.php?aff=21833).
+- **VPSDime:** start here for monthly, RAM-forward Linux hosting after the compatibility check. [Compare current Linux plans](https://vpsdime.com/a/4857/linux-vps).
+- **ProfitServer:** inspect this when a specific listed region matters, then verify the plan and billing period before paying. [Check current locations and plans](https://profitserver.net/?partner_id=3430198).
+- **CloudCone:** inspect this for a small US-based task that fits the displayed annual SSD VPS 1 shape; treat $2.33 as an annual-price equivalent, not monthly billing. [Check the current offer](https://app.cloudcone.com/?ref=14824).
 
-### 5. HostDare — read the small-plan limits before the headline
-![HostDare public pricing page (snapshot 2026-11-02)](assets/hostdare.com-pricing.png)
+No provider above is declared fastest, most reliable or best-routed. The defensible choice is the smallest reversible purchase that meets the written workload, location and payment requirements.
 
+## Sources and limits
 
-**Fit:** a small, self-managed workload that fits a particular HostDare product; a buyer who can distinguish its ordinary and optimized network offerings.
+Official pages used in this edition:
 
-The [SSD VPS page](https://www.hostdare.com/vps.html) listed **SSD0 at $25.99/year** on 2026-11-02. The page title says NVMe, while the table uses SSD and a hardware section references Ivy/Sandy Bridge processors. Confirm the ordered hardware instead of declaring the whole line modern or fast from the headline.
+- [RackNerd VPS specials](https://www.racknerd.com/specials)
+- [VPSDime Linux VPS](https://vpsdime.com/linux-vps)
+- [ProfitServer VPS catalog](https://profitserver.net/)
+- [CloudCone SSD VPS catalog](https://cloudcone.com/vps/)
+- [GreenCloudVPS Budget KVM catalog](https://greencloudvps.com/billing/store/budget-kvm-sale)
+- [DigitalOcean Droplet pricing](https://www.digitalocean.com/pricing/droplets)
+- [Vultr Cloud Compute](https://www.vultr.com/products/cloud-compute/)
+- [Hetzner Cloud](https://www.hetzner.com/cloud) and [billing overview](https://docs.hetzner.com/cloud/billing/faq)
 
-**Who should NOT use it:** someone expecting the lowest ordinary-plan price to buy a premium network, or relying on a broad, unconditional refund trial.
-
-**Before committing:** the page describes a **three-day, conditional refund**, possible $0.50–$1 deductions and possible refusal after using at least 20% of the monthly bandwidth. It also says Windows licenses are not included. Those details can matter more than the annual-price difference.
-
-<!-- AFF_SLOT:HOSTDARE | No submission recorded; public affiliate research identifies an active-service prerequisite. No purchase or affiliate URL supplied. -->
-**Official plans · affiliate slot unfilled:** [Check HostDare specifications and refund terms](https://www.hostdare.com/vps.html).
-
-### 6. GreenCloudVPS — compare one inventory-backed offer at a time
-![GreenCloudVPS public pricing page (snapshot 2026-11-02)](assets/greencloudvps.com-pricing.png)
-
-
-**Fit:** experienced buyers willing to select an exact CPU/storage/location bundle and accept the particular sale conditions.
-
-The [Budget KVM sale catalog](https://greencloudvps.com/billing/store/budget-kvm-sale) exposed configurations, mixed stock levels and a “No refund/Money back” label on 2026-11-02. It did **not** expose a usable price in this capture. There is no verified current starting price in this edition.
-
-**Who should NOT use it:** someone who needs a permanently available identical SKU, assumes all locations use the same hardware, or treats a non-refundable sale as a refundable performance trial.
-
-**Before committing:** verify the live invoice, renewal, exact CPU/storage, resource policy and backup retention. “1 Free Backup/Snapshot” is not enough information to establish an off-host recovery plan. No database-performance recommendation is justified without testing the chosen product.
-
-<!-- AFF_SLOT:GREENCLOUD | No submission recorded in supplied status ledger; no affiliate URL supplied. -->
-**Official sale catalog · affiliate slot unfilled:** [Inspect GreenCloud's exact offers](https://greencloudvps.com/billing/store/budget-kvm-sale).
-
-### 7. VPSDime — useful monthly RAM options, with product-line boundaries
-![VPSDime public pricing page (snapshot 2026-11-02)](assets/vpsdime.com-pricing.png)
-
-
-**Fit:** memory-heavy development tools, a persistent automation worker or a non-critical self-hosted service whose owner wants monthly billing.
-
-The [Linux plan table](https://vpsdime.com/linux-vps) listed **4 GB at $5/month** and **6 GB at $7/month** on 2026-11-02. The [FAQ](https://vpsdime.com/) says Linux uses its own optimized virtualization platform; Premium uses KVM and offers dedicated CPU. Do not describe the low-price Linux plan as the Premium product.
-
-**Who should NOT use it:** someone requiring a particular kernel/isolation model without checking compatibility, or treating generous RAM as evidence of guaranteed database write performance.
-
-**Before committing:** Linux nightly backups are an optional add-on with stated three-night retention; Premium includes nightly backups. The FAQ also describes a 72-hour first-order refund subject to TOS/AUP and suspension after exhausting transfer without adding capacity. These are public policies, not exercised guarantees.
-
-<!-- AFF_SLOT:VPSDIME | No submission recorded in supplied status ledger; no affiliate URL supplied. -->
-**Official Linux plans · affiliate slot unfilled:** [Compare VPSDime's monthly bundles](https://vpsdime.com/linux-vps).
-
-### 8. ProfitServer — regional workers, provided the invoice and policies fit
-![ProfitServer public pricing page (snapshot 2026-11-02)](assets/profitserver.net-pricing.png)
-
-
-**Fit:** separate small workers or regional services where the chosen location, network capacity and actual billing cycle meet the job.
-
-The [public product page](https://profitserver.net/) displayed **$2.90 Optima** and **$3.90 S** examples on 2026-11-02. The flattened capture did not recover a reliable billing-cycle label or every location-to-price association. These are not certified $2.90/month or $3.90/month offers in this guide.
-
-**Who should NOT use it:** someone equating “unlimited traffic” with gigabit throughput, or treating a multi-location catalog as proven infrastructure automation or application failover.
-
-**Before committing:** the FAQ describes a non-guaranteed 100 Mbps channel with different minimums by location. It also says unpaid blocked VPS services are deleted after **72 hours** and that outbound port 25 is restricted in some locations. Keep off-provider backups and check mail/worker policies before deployment; do not infer anonymous purchasing from crypto support.
-
-<!-- AFF_SLOT:PROFITSERVER | No submission recorded in supplied status ledger; no affiliate URL supplied. -->
-**Official catalog · affiliate slot unfilled:** [Check ProfitServer's location-specific offers](https://profitserver.net/).
-
-## Affiliate status: three states, not three marketing labels
-
-The public-link policy for this edition is:
-
-| State | Required evidence | Link shown to readers |
-|---|---|---|
-| **Official link only** | No authorized link supplied; an unstarted application or an existing account awaiting code retrieval belongs here | Ordinary official product URL |
-| **Application pending** | A real submission receipt, with no final approval yet | Ordinary official URL; no implication of endorsement |
-| **Authorized affiliate link** | Approved promotion scope and an owner-authorized URL for this publication | Clearly labeled affiliate URL after disclosure |
-
-**Current snapshot, 2026-11-04:** **RackNerd is now an authorized affiliate link** — the URL was supplied and confirmed as ours by the site owner; we did not log in to activate it and we do not state its commission rate, cookie window or payout terms, because we have not verified them. CloudCone still has an existing owner account awaiting authorized code retrieval, and the supplied ledger records BandwagonHost, DMIT, HostDare, GreenCloud, VPSDime and ProfitServer as unstarted, so **those seven remain official link only** in this edition. Awaiting a code is not the same as an application pending approval; having a customer account is not evidence of testing or partnership approval.
-
-## Sources and verification limits
-
-- Product sources are linked beside each price/card: RackNerd specials, BandwagonHost catalog, CloudCone VPS, DMIT pricing, HostDare VPS, GreenCloud Budget KVM sale, VPSDime Linux/FAQ and ProfitServer catalog/FAQ.
-- The RackNerd **affiliate** URL was supplied and confirmed as ours by the site owner; it was not obtained by logging in on our side, and we make no claim about the commission rate or payout terms attached to it.
-- Sources were inspected as public-page text through a third-party extraction service. Extraction can omit dynamic prices and flatten location tabs. It is not a completed checkout or a pixel-verified screenshot.
-- No YABS, storage latency, application throughput, long-term uptime, route or backup-restore measurements were performed. Screenshots show dated public pages, not test results. No benchmark chart is supplied. Any later chart must identify the exact VM, region, date, method and raw results.
-- The $99.99 BandwagonHost and $36.90 DMIT AS3 prices are catalog observations, not confirmed stock. Historical prices were not silently relabeled as current purchasable offers.
-- Recheck price, stock, renewal, taxes, refund and resource policy on the exact official order before paying. Missing evidence is a reason to verify, not a reason to invent a negative claim.
-
-## Final verdict
-
-For a rebuildable hobby service, compare **RackNerd and CloudCone's annual invoices with VPSDime's monthly commitment**. For a particular regional network, inspect **BandwagonHost, DMIT and HostDare at the product-series level**. For configurable inventory or regional workers, investigate **GreenCloud and ProfitServer without importing an unverified starting price**.
-
-For production, databases and API-driven fleets, the decisive question is not “which gives the most RAM?” It is **“who owns operations, and can this exact service meet the recovery and automation requirements?”** If the answer is unclear, resolve it—or choose a managed product—before committing. That is a better VPS decision than an unsupported universal winner.
+Public pages and full-page snapshots can omit dynamic selectors, live inventory and checkout-only terms. No checkout was completed. We did not independently test CPU, disk, application throughput, network routes, uptime, restoration, long-term stability or support response. Recheck all material facts at purchase time.
