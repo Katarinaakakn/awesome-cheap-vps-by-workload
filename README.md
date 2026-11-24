@@ -4,7 +4,6 @@
 
 > This is a buying guide based on official public pages, not a hands-on performance ranking. We did not purchase or benchmark these services, test routing or inventory, test long-term stability, attempt disaster recovery, or open support tickets. We also did not verify renewal or refund terms through purchase. Price, stock, renewal, tax, routing, policy and checkout eligibility can change; verify the exact order before paying.
 >
-> **Affiliate disclosure:** We may earn a commission or account credit if you buy through our RackNerd, VPSDime, ProfitServer or CloudCone links.
 
 ## Short verdict
 
